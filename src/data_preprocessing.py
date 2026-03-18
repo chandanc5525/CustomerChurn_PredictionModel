@@ -23,6 +23,10 @@ def data_preprocessing(df):
     # Step1: Clean Duplicated Values
     df = df.drop_duplicates()
     
+    # Encode target to 0 and 1
+    df['Churn'] = df['Churn'].apply(lambda x: 1 if x == 'Yes' else 0)
+
+    
     # Step2: Split the Dataset into X and y
     X = df.drop(columns = ['customerID','Churn'])
     y = df['Churn']
@@ -37,6 +41,46 @@ def data_preprocessing(df):
     categorical_col = X_train.select_dtypes(include = 'object').columns
     
     # Step5: Using Numerical_Pipeline and Categorical_Pipeline
+    
+    Numerical_Pipeline = Pipeline(steps = [
+        ('Imputer',SimpleImputer(strategy= 'median')),
+        ('Scaling',MinMaxScaler())
+    ])
+    
+    Categorical_Pipeline = Pipeline(steps=[
+        ('Imputer',SimpleImputer(strategy= 'most_frequent')),
+        ('Encoder',OneHotEncoder(handle_unknown= 'ignore'))
+    ])
+    
+    Preprocessor = ColumnTransformer(transformers= [
+        ('Numerical_pipe',Numerical_Pipeline,numerical_col),
+        ('Categorical_pipe',Categorical_Pipeline,categorical_col)
+    ])
+    
+    X_train = Preprocessor.fit_transform(X_train)
+    X_test = Preprocessor.transform(X_test)
+    
+    # Use SMOTE Technique
+    sm = SMOTE()
+    
+    X_train,y_train = sm.fit_resample(X_train,y_train)
+    
+    # Use PCA (Principal Component Analysis: Dimensional Reduction Technique)
+    
+    pca = PCA()
+    
+    X_train = pca.fit_transform(X_train)
+    X_test = pca.transform(X_test)
+    
+    return X_train,X_test,y_train,y_test
+
+    
+    
+    
+    
+    
+    
+    
     
     
     
