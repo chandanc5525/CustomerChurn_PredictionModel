@@ -52,3 +52,9 @@ The solution leverages data preprocessing, feature engineering, and AutoML techn
 ## **Architecture Diagram**
 
 ![alt text](image.png)
+
+---
+
+## **Deployment UI**
+
+![alt text](deployment_image.PNG)
