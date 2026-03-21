@@ -17,8 +17,11 @@ This project aims to develop a machine learning model that can analyze customer 
 The objective of this project is to build an end-to-end machine learning pipeline that predicts customer churn based on historical customer data. The model should be able to:
 
 * Accurately classify customers into churn and non-churn categories
+
 * Handle imbalanced data using appropriate techniques
+
 * Process both numerical and categorical features efficiently
+
 * Provide a scalable and reusable pipeline for real-world deployment
 
 The solution leverages data preprocessing, feature engineering, and AutoML techniques to select the best-performing model while ensuring reproducibility through experiment tracking and model versioning.
