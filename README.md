@@ -1,4 +1,4 @@
-## **Customer Churn Prediction Model**
+## **Telecom Customer Churn Prediction Model**
 
 ### **Author: Chandan Chaudhari**
 
